@@ -60,20 +60,24 @@ searchBook.addEventListener('keyup', function (e){
 const addBook = document.forms["add-book"]
 addBook.addEventListener('submit', (e)=>{
     e.preventDefault()
-    const inputValue = addBook.querySelector('input').value;
+    const inputValue = addBook.querySelector('input').value.trim();
 
-    const liTag = document.createElement("li");
-    const firstSpan = document.createElement("span");
-    const secondSpan = document.createElement("span")
+    if (inputValue){
+        const liTag = document.createElement("li");
+        const firstSpan = document.createElement("span");
+        const secondSpan = document.createElement("span")
 
-    firstSpan.className = 'name';
-    secondSpan.className = 'delete';
+        firstSpan.className = 'name';
+        secondSpan.className = 'delete';
 
-    liTag.appendChild(firstSpan);
-    liTag.appendChild(secondSpan);
+        liTag.appendChild(firstSpan);
+        liTag.appendChild(secondSpan);
 
-    firstSpan.textContent = inputValue;
-    secondSpan.textContent = "delete";
+        firstSpan.textContent = inputValue;
+        secondSpan.textContent = "delete";
 
-    bookList.appendChild(liTag) //use.prepend to add to d beginning of d list
+        bookList.appendChild(liTag) //use.prepend to add to d beginning of d list
+
+        addBook.reset();
+    }
 })
