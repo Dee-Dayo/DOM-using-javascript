@@ -46,6 +46,7 @@ searchBook.addEventListener('keyup', function (e){
     listOfBooks.forEach((book)=>{
         let title = book.textContent.toLowerCase()
         let parentNode = book.parentNode
+
         if (title.includes(inputText)){
             parentNode.style.display = "block"
         } else {
@@ -53,4 +54,26 @@ searchBook.addEventListener('keyup', function (e){
         }
     })
 
+})
+
+//this is to add books to the site
+const addBook = document.forms["add-book"]
+addBook.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    const inputValue = addBook.querySelector('input').value;
+
+    const liTag = document.createElement("li");
+    const firstSpan = document.createElement("span");
+    const secondSpan = document.createElement("span")
+
+    firstSpan.className = 'name';
+    secondSpan.className = 'delete';
+
+    liTag.appendChild(firstSpan);
+    liTag.appendChild(secondSpan);
+
+    firstSpan.textContent = inputValue;
+    secondSpan.textContent = "delete";
+
+    bookList.appendChild(liTag) //use.prepend to add to d beginning of d list
 })
